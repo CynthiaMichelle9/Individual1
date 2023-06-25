@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        {% block navbar%}
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'Home' %}"><img src="{% static 'assets/images/logo.png'%}"
+                        alt="logo" width="60px" height="auto"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Login' %}">Iniciar sesión</a>
+                        </li>
+
+                        {% if user.is_authenticated %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Tareas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Mis tareas</a></li>
+                                <li><a class="dropdown-item" href="#">Tareas completadas</a></li>
+                            </ul>
+                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Mi cuenta
+                                </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Datos personales</a></li>
+                                <li><a class="dropdown-item" href="#">Suscripción</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Logout' %}">Cerrar sesión</a>
+                        </li>
+
+                        {% endif %}
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar en la página"
+                            aria-label="Search">
+                        <button class="btn btn-personal btn-outline-personal" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        {% endblock navbar %}
+
+    </header>
+
+    <div class="container text-body-secondary text-center">
+        <img src="{% static 'assets/images/logotransparente.png' %}" alt="logotransparente" class="logoprincipal">
+    </div>
+
+
+    {% block contenido%}
+
+    {% endblock contenido %}
+
+    <br>
+    <br>
+
+    {% block footer %}
+
+    <footer class="flex-shrink-0 py-4 text-white-50 footerbase">
+        <div class="row row-cols-1 row-cols-md-3 g-4 futer">
+            <div class="col futer">
+                <div id="card-footer" class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-footer">Aurora Knits</h5>
+                        <p class="card-text">En Aurora Knits, nos apasiona ofrecer tejidos a mano de alta calidad y
+                            patrones creativos para tejido a palillo y crochet. Nuestro equipo de artesanos expertos se
+                            dedica a crear prendas únicas y elegantes, mientras que nuestros patrones inspiradores
+                            brindan la oportunidad de explorar la creatividad. ¡Te invitamos a sumergirte en el
+                            maravilloso mundo de los tejidos con nosotros!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col futer">
+                <div id="card-footer" class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-footer">Contacto</h5>
+                        <ul class="ul-footer">
+                            <li class="li-footer">Avenida tejedores #9090, Villa Alemana, Chile</li>
+                            <li class="li-footer">+56 9 99116644</li>
+                            <li class="li-footer">auroraknits@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col futer">
+                <div id="card-footer" class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-footer">Nuestras redes sociales</h5>
+                        <div>
+                            <div class="redes">
+                                <a class="d-inline-flex r mb-2" href="https://www.instagram.com/"> <img
+                                        class="redesimg mb-4" src="{% static 'assets/images/redes/instagram.png'%}"
+                                        alt=" instagram" width="50px" height="auto">
+                                </a>
+                                <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none"
+                                    href="https://www.facebook.com/"><img class="redesimg mb-4"
+                                        src="{% static 'assets/images/redes/facebook.png'%}" alt=" facebook"
+                                        width="50px" height="auto">
+                                </a>
+                                <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none"
+                                    href="https://www.tiktok.com/"><img class="redesimg mb-4"
+                                        src="{% static 'assets/images/redes/tiktok.png'%}" alt=" tiktok" width="50px"
+                                        height="auto">
+                                </a>
+                                <a class="d-inline-flex  mb-2" href="https://www.twitter.com/">
+                                    <img class="redesimg mb-4" src="{% static 'assets/images/redes/twitter.png'%}"
+                                        alt="twitter" width="50px" height="auto">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container text-body-secondary text-center">
+                <div class="container text-body-secondary text-center">
+                    <img src="{% static 'assets/images/logoprincipal.png' %}" alt="logoprincipal" class="logoprincipal">
+
+                    <p class="autor">Cynthia Michelle Abarca &copy; Copyright Aurora Handmade knits</p>
+                </div>
+            </div>
+
+    </footer>
+
+    {% endblock footer %}
+</body>
+
+</html>

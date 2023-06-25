@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Iniciar sesión {% endblock %}
+
+
+{% block contenido %}
+
+<div id="registro" class="d-flex justify-content-center">
+  
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="card-container align-items-center" style="width: 400px;">
+      <div class="card align-items-center">
+        <div class="card-body">
+          <h5 class="card-title text-center">Iniciar sesión</h5>
+          <div class="form-group" style="width: 300px;">
+            <label for="id_username">Usuario</label>
+            {{ form.username }} 
+          </div>
+          <div class="form-group" style="width: 300px;">
+            <label for="id_password">Contraseña</label>
+           {{ form.password }} 
+          </div>
+          
+          {% if form.errors %}
+          <div class="alert alert-danger mt-3" role="alert">
+            {{ form.errors }}
+          </div>
+          {% endif %}
+          <div class="d-flex justify-content-center" style="padding: 10px;">
+          <button type="submit" class="btn btn-personal mt-3">Ingresar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+{% endblock %}
