@@ -8,29 +8,52 @@
 {% if user.is_authenticated %}
 
 <div class="d-flex justify-content-center">
-<h1 id="bienvenida" class="title titulo"> Hola {{ user }} ! </h1>
-
+    <div class="card bienvenido">
+        <h3 class="title titulo"> ¡Bienvenido a TaskMinder {{ user }} ! </h3>
+        <br>
+        <h5 class="title titulo">Tu herramienta de gestión de tareas personalizada. Organiza, prioriza y realiza un
+            seguimiento de tus tareas de manera eficiente. ¡Aprovecha al máximo tu tiempo y alcanza tus metas con
+            TaskMinder! <svg xmlns="http://www.w3.org/2000/svg" width="30" height="auto" fill="currentColor"
+                class="bi bi-balloon-heart" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z" />
+            </svg></h5>
+    </div>
 </div>
-
 {% else %}
 
 <div class="card-group nosotros">
     <div class="card conocenos">
         <div class="card-body">
             <h3 id="conocenos">Conoce TaskMinder y optimiza tu productividad</h3>
-            <p class="card-text">TaskMinder es una plataforma de gestión de tareas diseñada para ayudarte a organizar y optimizar tu productividad. Con TaskMinder, puedes decir adiós a la confusión y el estrés de un flujo interminable de tareas pendientes. Nuestra aplicación te permite crear, rastrear y administrar tus tareas de manera eficiente, para que puedas concentrarte en lo que realmente importa.
+            <p class="card-text">TaskMinder es una plataforma de gestión de tareas diseñada para ayudarte a organizar y
+                optimizar tu productividad. Con TaskMinder, puedes decir adiós a la confusión y el estrés de un flujo
+                interminable de tareas pendientes. Nuestra aplicación te permite crear, rastrear y administrar tus
+                tareas de manera eficiente, para que puedas concentrarte en lo que realmente importa.
                 <br>
                 <br>
-                Con una interfaz intuitiva y fácil de usar, TaskMinder te permite agregar tareas con detalles completos, como títulos, descripciones, fechas de vencimiento y etiquetas de categoría. Puedes ver todas tus tareas pendientes en una lista ordenada por fecha de vencimiento, lo que te proporciona una visión clara de tus responsabilidades y prioridades.
+                Con una interfaz intuitiva y fácil de usar, TaskMinder te permite agregar tareas con detalles completos,
+                como títulos, descripciones, fechas de vencimiento y etiquetas de categoría. Puedes ver todas tus tareas
+                pendientes en una lista ordenada por fecha de vencimiento, lo que te proporciona una visión clara de tus
+                responsabilidades y prioridades.
                 <br>
                 <br>
-                Además, TaskMinder te brinda opciones flexibles para filtrar tus tareas por etiqueta y estado, lo que te permite enfocarte en las áreas que requieren tu atención inmediata. Puedes marcar las tareas como pendientes, en progreso o completadas, y tener una lista separada de tareas completadas para un seguimiento y logro efectivos.
+                Además, TaskMinder te brinda opciones flexibles para filtrar tus tareas por etiqueta y estado, lo que te
+                permite enfocarte en las áreas que requieren tu atención inmediata. Puedes marcar las tareas como
+                pendientes, en progreso o completadas, y tener una lista separada de tareas completadas para un
+                seguimiento y logro efectivos.
                 <br>
                 <br>
-                Nuestra herramienta también te brinda una página de detalles de tareas, donde puedes acceder a toda la información relevante y realizar actualizaciones en tiempo real. Desde cambiar el estado de una tarea hasta editar su título, descripción o fecha de vencimiento, TaskMinder te ofrece el control total sobre tus tareas.
+                Nuestra herramienta también te brinda una página de detalles de tareas, donde puedes acceder a toda la
+                información relevante y realizar actualizaciones en tiempo real. Desde cambiar el estado de una tarea
+                hasta editar su título, descripción o fecha de vencimiento, TaskMinder te ofrece el control total sobre
+                tus tareas.
                 <br>
                 <br>
-                TaskMinder es tu compañero de confianza para la gestión de tareas. Organiza, prioriza y realiza un seguimiento de tus tareas de manera eficiente, permitiéndote mantener el enfoque en tus objetivos y lograr resultados extraordinarios en todas las áreas de tu vida</p>
+                TaskMinder es tu compañero de confianza para la gestión de tareas. Organiza, prioriza y realiza un
+                seguimiento de tus tareas de manera eficiente, permitiéndote mantener el enfoque en tus objetivos y
+                lograr resultados extraordinarios en todas las áreas de tu vida
+            </p>
         </div>
     </div>
 

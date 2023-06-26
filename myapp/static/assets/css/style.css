@@ -96,7 +96,18 @@ nav img:hover {
     color: #8c52ff;
 }
 
-.titulo {
-    padding: 50px;
-    margin: 50px;
+::placeholder {
+    color: gray;
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+.bienvenido{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: black;
+    padding: 10px;
+    margin: 10px;
+    border-color: #c1ff72;
 }
