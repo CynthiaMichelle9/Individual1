@@ -2,6 +2,7 @@ from django.contrib import admin
 from django import forms
 from .models import CategoriaTarea
 from . import models
+from django.db import models
 
 # Register your models here.
 class CategoriaTareaAdmin(admin.ModelAdmin):

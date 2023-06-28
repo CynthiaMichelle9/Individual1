@@ -4,24 +4,26 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.db import models
 
-ESTADO_CHOICES = [
+
+class EstadoTarea(models.Model):
+
+    ESTADO_CHOICES = [
         ('Pendiente', 'Pendiente'),
         ('En progreso', 'En progreso'),
         ('Completada', 'Completada'),
     ]
-    
-CATEGORIA_CHOICES = [
+
+    idestado_tarea = models.IntegerField(primary_key=True)
+    estado_tarea = models.CharField(max_length=25, choices=ESTADO_CHOICES, default='Pendiente')
+
+class CategoriaTarea(models.Model):
+
+    CATEGORIA_CHOICES = [
     ('Trabajo', 'Trabajo'),
     ('Hogar', 'Hogar'),
     ('Estudios', 'Estudios'),
     ('Otros', 'Otros')
 ]
-
-class EstadoTarea(models.Model):
-    idestado_tarea = models.IntegerField(primary_key=True)
-    estado_tarea = models.CharField(max_length=25, choices=ESTADO_CHOICES, default='Pendiente')
-
-class CategoriaTarea(models.Model):
     idetiqueta_tarea = models.IntegerField(primary_key=True)
     nombre_categoria = models.CharField(max_length=25, choices=CATEGORIA_CHOICES, default='Trabajo')
 
