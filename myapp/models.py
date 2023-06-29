@@ -26,11 +26,11 @@ class CategoriaTarea(models.Model):
 ]
     idetiqueta_tarea = models.IntegerField(primary_key=True)
     nombre_categoria = models.CharField(max_length=25, choices=CATEGORIA_CHOICES, default='Trabajo')
-
+    
 
 class Tarea(models.Model):
     idtarea = models.IntegerField(primary_key=True)
-    titulo = models.CharField(max_length=15)
+    titulo = models.CharField(max_length=30)
     descripcion = models.TextField()
     fecha_vencimiento = models.DateTimeField()
     deleted = models.BooleanField(default=False)

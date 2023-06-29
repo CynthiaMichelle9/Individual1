@@ -46,21 +46,11 @@
                                 Tareas
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Mis tareas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Tareas' %}">Mis tareas</a></li>
                                 <li><a class="dropdown-item" href="#">Tareas completadas</a></li>
+                                <li><a class="dropdown-item" href="#">Tareas eliminadas</a></li>
                             </ul>
                         </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Mi cuenta
-                                </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Datos personales</a></li>
-                                <li><a class="dropdown-item" href="#">Suscripción</a></li>
-                            </ul>
-                        </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'Logout' %}">Cerrar sesión</a>
                         </li>

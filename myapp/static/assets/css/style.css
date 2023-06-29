@@ -111,3 +111,12 @@ nav img:hover {
     margin: 10px;
     border-color: #c1ff72;
 }
+
+.logoprincipal{
+    width: 13rem;
+    height: auto;
+}
+
+.modal{
+    display: none;
+}

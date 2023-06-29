@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.shortcuts import render, HttpResponseRedirect
 
 # Create your views here.
 class IndexView(TemplateView):
@@ -30,9 +31,30 @@ class IngresoView(TemplateView):
       if user is not None:
         if user.is_active:
           login(request, user)
-          return redirect('Home')
+          return redirect('Tareas')
       form.add_error('password', 'Nombre de usuario o contraseña incorrectos. Porfavor ingrese nuevamente')
       return render(request, self.template_name, { "form": form })
     else:
       return render(request, self.template_name, { "form": form })
+  
+class TareasView(TemplateView):
+    template_name='tareas.html'
+
+    def get(self, request, *args, **kwargs):
+       result = []
+       if not result:
+          pass
+       context = {}
+       return render(request, self.template_name, context=context)
+  
+
+
+def login_success(request):
+    # Obtén el usuario autenticado
+    user = request.user
     
+    # Crea un mensaje de bienvenida
+    mensaje_bienvenida = f"Bienvenido/a, {user.username}!"
+    
+    # Redirige a la página deseada con el mensaje de bienvenida como parámetro
+    return HttpResponseRedirect('/tareas.html/?mensaje={}'.format(mensaje_bienvenida))
