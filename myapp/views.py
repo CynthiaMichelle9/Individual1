@@ -31,7 +31,7 @@ class IngresoView(TemplateView):
       if user is not None:
         if user.is_active:
           login(request, user)
-          return redirect('Tareas')
+          return redirect('tareas')
       form.add_error('password', 'Nombre de usuario o contraseña incorrectos. Porfavor ingrese nuevamente')
       return render(request, self.template_name, { "form": form })
     else:
@@ -46,15 +46,3 @@ class TareasView(TemplateView):
           pass
        context = {}
        return render(request, self.template_name, context=context)
-  
-
-
-def login_success(request):
-    # Obtén el usuario autenticado
-    user = request.user
-    
-    # Crea un mensaje de bienvenida
-    mensaje_bienvenida = f"Bienvenido/a, {user.username}!"
-    
-    # Redirige a la página deseada con el mensaje de bienvenida como parámetro
-    return HttpResponseRedirect('/tareas.html/?mensaje={}'.format(mensaje_bienvenida))
