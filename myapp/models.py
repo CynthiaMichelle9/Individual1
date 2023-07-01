@@ -5,7 +5,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class EstadoTarea(models.Model):
+class EtiquetaTarea(models.Model):
+    nombre = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.nombre
+
+class Tarea(models.Model):
 
     ESTADO_CHOICES = [
         ('Pendiente', 'Pendiente'),
@@ -13,31 +19,21 @@ class EstadoTarea(models.Model):
         ('Completada', 'Completada'),
     ]
 
-    idestado_tarea = models.IntegerField(primary_key=True)
-    estado_tarea = models.CharField(max_length=25, choices=ESTADO_CHOICES, default='Pendiente')
-
-class CategoriaTarea(models.Model):
-
-    CATEGORIA_CHOICES = [
-    ('Trabajo', 'Trabajo'),
-    ('Hogar', 'Hogar'),
-    ('Estudios', 'Estudios'),
-    ('Otros', 'Otros')
-]
-    idetiqueta_tarea = models.IntegerField(primary_key=True)
-    nombre_categoria = models.CharField(max_length=25, choices=CATEGORIA_CHOICES, default='Trabajo')
-    
-
-class Tarea(models.Model):
     idtarea = models.IntegerField(primary_key=True)
     titulo = models.CharField(max_length=30)
     descripcion = models.TextField()
     fecha_vencimiento = models.DateTimeField()
     deleted = models.BooleanField(default=False)
-    estado_tarea = models.ForeignKey(EstadoTarea, on_delete=models.CASCADE)
-    etiqueta_tarea = models.ForeignKey(CategoriaTarea, on_delete=models.CASCADE)
+    estado_tarea = models.CharField(choices=ESTADO_CHOICES, default='Pendiente')
+    etiqueta_tarea = models.ForeignKey(EtiquetaTarea, on_delete=models.SET_NULL, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def delete(self, *args, **kwargs):
         self.deleted = True
         self.save()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'Tareas'

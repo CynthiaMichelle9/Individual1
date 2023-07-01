@@ -1,5 +1,5 @@
 from django import forms
-from .models import  EstadoTarea, CategoriaTarea, Tarea
+from .models import Tarea
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='Nombre de usuario', required=True, max_length=20, min_length=5,
@@ -28,6 +28,5 @@ class TareaForm(forms.ModelForm):
         model = Tarea
         fields = ['titulo', 'descripcion', 'fecha_vencimiento', 'estado_tarea', 'etiqueta_tarea']
         widgets = {
-            'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'}),
-        
+            'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'})
         }
