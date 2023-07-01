@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, HttpResponseRedirect
 from django.views.generic import View
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .forms import LoginForm, TareaForm
 from .models import Tarea
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -77,10 +77,21 @@ class TareaDetalle(DetailView):
 
 class TareaCrear(CreateView):
    model = Tarea
-   fields = ['titulo', 'descripcion', 'fecha_vencimiento', 'estado_tarea', 'etiqueta_tarea']
-  
+   form_class = TareaForm
    success_url = reverse_lazy("tareas")
 
+   def form_valid(self, form):
+    form.instance.usuario = self.request.user # Generar instancia del formulario y si es válido, etonces se puede crear la tarea, de lo contrario si falta algo no se creará
+    return super().form_valid(form)    
+    
+   def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs) # Obtener el contexto
+    etiqueta_tarea = Tarea.etiqueta_tarea  # Obtener todas las etiquetas
+    context['etiqueta_tarea'] = etiqueta_tarea  # Agregar las etiquetas al contexto
+    estado_tarea = Tarea.estado_tarea # Obtener todos los estados del modelo Tarea
+    context['estado_tarea'] = estado_tarea  # Agregar los estados al contexto
+    return context
+    
 class TareaModificar(UpdateView):
    model = Tarea
    fields = "__all__"

@@ -32,7 +32,7 @@ class Tarea(models.Model):
     idtarea = models.IntegerField(primary_key=True)
     titulo = models.CharField(max_length=30)
     descripcion = models.TextField()
-    fecha_vencimiento = models.DateField()
+    fecha_vencimiento = models.DateTimeField()
     deleted = models.BooleanField(default=False)
     estado_tarea = models.ForeignKey(EstadoTarea, on_delete=models.CASCADE)
     etiqueta_tarea = models.ForeignKey(CategoriaTarea, on_delete=models.CASCADE)

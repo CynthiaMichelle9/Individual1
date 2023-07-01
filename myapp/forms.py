@@ -29,6 +29,5 @@ class TareaForm(forms.ModelForm):
         fields = ['titulo', 'descripcion', 'fecha_vencimiento', 'estado_tarea', 'etiqueta_tarea']
         widgets = {
             'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'}),
-            'estado_tarea': forms.Select(choices=EstadoTarea.ESTADO_CHOICES),
-            'etiqueta_tarea': forms.Select(choices=CategoriaTarea.CATEGORIA_CHOICES),
+        
         }
