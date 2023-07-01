@@ -6,15 +6,37 @@
 
 {% block contenido %}
 <div class="d-flex justify-content-center">
-    
-
-  
-    <h1>Tarea: {{tarea}}</h1>
-
+  <h1>Tarea: {{ tarea.titulo }}</h1>
+  <a href="{% url 'tareas' %}" class="btn btn-secondary mb-3">Atrás</a>
 </div>
-  {% empty %}
-  <p>No hay tareas que mostrar</p>
-  {% endfor %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Descripción</th>
+      <th>Fecha de Vencimiento</th>
+      <th>Estado de Tarea</th>
+      <th>Etiqueta de Tarea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ tarea.descripcion }}</td>
+      <td>{{ tarea.fecha_vencimiento }}</td>
+      <td>{{ tarea.estado_tarea }}</td>
+      <td>{{ tarea.etiqueta_tarea }}</td>
+      <td><a href="{% url 'editar-tarea' pk=tarea.pk %}">Editar</a></td>
+      <td><a href="{% url 'eliminar-tarea' pk=tarea.pk %}">Eliminar</a></td>
+      <td>
+        {% if tarea.estado_tarea != 'Completado' %}
+      <form method="POST" action="{% url 'completar-tarea' tarea.idtarea %}">
+        {% csrf_token %}
+        <input type="submit" value="Completar">
+      </form>
+    {% endif %}
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 

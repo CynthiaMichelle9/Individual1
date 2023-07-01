@@ -133,3 +133,4 @@ LOGIN_REDIRECT_URL = 'tareas'
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_URL ='login'
 LOGOUT_URL = 'logout'
+

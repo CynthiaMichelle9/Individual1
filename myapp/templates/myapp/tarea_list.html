@@ -6,33 +6,36 @@
 
 {% block contenido %}
 <div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-primary btn-personal" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      ¡Bienvenido a TaskMinder {{ user }} ! 
-    </button>
+  <h3>¡Bienvenido a TaskMinder {{ user }} !</h3>
 </div>
 
-<h1>Lista de tareas</h1>
-<a href="{% url 'crear-tarea' %}">Añadir tarea</a>
+<div class="card">
+  <div class="card-body">
+    
+    <h3 class="titulo">Lista de tareas</h3>
 
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  {% for tarea in tareas %}
-  <tr>
-    <td>{{tarea.titulo}}</td><br/>
-    <td>{{tarea.fecha_vencimiento}}</td><br/>
-    <td><a href="{% url 'tarea'  %}">Ver detalles</a></td>
-    <td><a href="{% url 'editar-tarea'  %}">Editar</a></td>
-  </tr>
-
-  {% empty %}
-  <p>No hay tareas que mostrar</p>
-  {% endfor %}
-</table>
-
+    <a href="{% url 'crear-tarea'  %}">Añadir tarea</a>
+    <div class="col 2">
+      <table class="table">
+        <tr>
+          <th>Lista de tareas</th>
+          <th>Fecha de vencimiento</th>
+          <th></th>
+        </tr>
+        {% for tarea in tareas %}
+        <tr>
+          <td>{{tarea.titulo}}</td><br/>
+          <td>{{tarea.fecha_vencimiento}}</td><br/>
+          <td> <a href="{% url 'tarea' pk=tarea.pk %}">Ver detalles</a></td>
+          
+        </tr>
+      
+        {% empty %}
+        <p>No hay tareas que mostrar</p>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

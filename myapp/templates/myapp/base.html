@@ -38,7 +38,7 @@
                             <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         </li>
 
-                        {% if user.is_authenticated %}
+                        {% if request.user.is_authenticated %}
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -48,8 +48,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'tareas' %}">Mis tareas</a></li>
                                 <li><a class="dropdown-item" href="{% url 'crear-tarea' %}">Añadir tarea</a></li>
-                                <li><a class="dropdown-item" href="#">Editar tareas</a></li>
-                                <li><a class="dropdown-item" href="#">Tareas eliminadas</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
