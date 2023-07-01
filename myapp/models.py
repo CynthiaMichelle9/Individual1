@@ -26,6 +26,7 @@ class Tarea(models.Model):
     deleted = models.BooleanField(default=False)
     estado_tarea = models.CharField(choices=ESTADO_CHOICES, default='Pendiente',  max_length=50)
     etiqueta_tarea = models.ForeignKey(EtiquetaTarea, on_delete=models.SET_NULL, null=True, blank=True)
+    observaciones = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def delete(self, *args, **kwargs):
