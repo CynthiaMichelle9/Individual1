@@ -21,7 +21,7 @@
         {% block navbar%}
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'Home' %}"><img src="{% static 'assets/images/logo.png'%}"
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'assets/images/logo.png'%}"
                         alt="logo" width="60px" height="auto"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Login' %}">Iniciar sesión</a>
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         </li>
 
                         {% if user.is_authenticated %}
@@ -46,13 +46,14 @@
                                 Tareas
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'Tareas' %}">Mis tareas</a></li>
-                                <li><a class="dropdown-item" href="#">Tareas completadas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'tareas' %}">Mis tareas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'crear-tarea' %}">Añadir tarea</a></li>
+                                <li><a class="dropdown-item" href="#">Editar tareas</a></li>
                                 <li><a class="dropdown-item" href="#">Tareas eliminadas</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'Logout' %}">Cerrar sesión</a>
+                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
                         </li>
 
                         {% endif %}

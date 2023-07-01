@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Lista de Tareas {% endblock %}
+
+
+{% block contenido %}
+<div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary btn-personal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      ¡Bienvenido a TaskMinder {{ user }} ! 
+    </button>
+</div>
+
+<h1>Lista de tareas</h1>
+<a href="{% url 'crear-tarea' %}">Añadir tarea</a>
+
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  {% for tarea in tareas %}
+  <tr>
+    <td>{{tarea.titulo}}</td><br/>
+    <td>{{tarea.fecha_vencimiento}}</td><br/>
+    <td><a href="{% url 'tarea'  %}">Ver detalles</a></td>
+    <td><a href="{% url 'editar-tarea'  %}">Editar</a></td>
+  </tr>
+
+  {% empty %}
+  <p>No hay tareas que mostrar</p>
+  {% endfor %}
+</table>
+
+
+{% endblock %}

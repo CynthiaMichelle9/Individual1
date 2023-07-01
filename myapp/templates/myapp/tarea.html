@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Lista de Tareas {% endblock %}
+
+
+{% block contenido %}
+<div class="d-flex justify-content-center">
+    
+
+  
+    <h1>Tarea: {{tarea}}</h1>
+
+</div>
+  {% empty %}
+  <p>No hay tareas que mostrar</p>
+  {% endfor %}
+</table>
+
+
+{% endblock %}
