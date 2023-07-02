@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from .forms import LoginForm, TareaForm
-from .models import Tarea
+from .models import Tarea, EtiquetaTarea
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -12,6 +12,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views import View
+from django.db.models import Q
+from datetime import datetime
 
 
 # Create your views here.
@@ -69,13 +71,36 @@ class TareaList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(user=self.request.user, estado_tarea='Pendiente')
+        queryset = queryset.filter(user=self.request.user, deleted=False)
+
+        fecha_vencimiento = self.request.GET.get('fecha_vencimiento')
+        estado_tarea = self.request.GET.get('estado_tarea')
+        titulo = self.request.GET.get('titulo')
+        etiqueta_tarea = self.request.GET.get('etiqueta_tarea')
+
+        if fecha_vencimiento:
+          try:
+            fecha_vencimiento = datetime.strptime(fecha_vencimiento, "%B %d, %Y").strftime("%Y-%m-%d")
+            queryset = queryset.filter(fecha_vencimiento=fecha_vencimiento)
+          except ValueError:
+            pass
+        if estado_tarea:
+            queryset = queryset.filter(estado_tarea=estado_tarea)
+        if titulo:
+            queryset = queryset.filter(titulo__icontains=titulo)
+        if etiqueta_tarea:
+            queryset = queryset.filter(etiqueta_tarea=etiqueta_tarea)
+
         return queryset
        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["tareas"] = context["tareas"].filter(user = self.request.user)
         context["count"] = context["tareas"].count()
+        context['fechas_vencimiento'] = Tarea.objects.filter(user=self.request.user).values_list('fecha_vencimiento', flat=True).distinct()
+        context['estados_tarea'] = Tarea.objects.filter(user=self.request.user).values_list('estado_tarea', flat=True).distinct()
+        context['titulos'] = Tarea.objects.filter(user=self.request.user).values_list('titulo', flat=True).distinct()
+        context['etiquetas_tarea'] = EtiquetaTarea.objects.all()
         return context
     
 
@@ -107,6 +132,11 @@ class TareaEliminar(DeleteView, LoginRequiredMixin):
    model = Tarea
    success_url = reverse_lazy("tareas")
    context_object_name = 'tarea' 
+
+   def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
 
 class CompletarTarea(LoginRequiredMixin, View):
     def post(self, request, pk):

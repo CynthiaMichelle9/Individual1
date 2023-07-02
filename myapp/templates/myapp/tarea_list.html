@@ -16,6 +16,61 @@
 
     <a href="{% url 'crear-tarea'  %}">Añadir tarea</a>
     <div class="col 2">
+
+      <button id="filtro-btn" class="btn-personal">Filtro</button>
+
+<div id="filtro-container" style="display: none;">
+  <form method="GET">
+    <label for="fecha_vencimiento">Fecha de Vencimiento:</label>
+    <select name="fecha_vencimiento" id="fecha_vencimiento">
+      <option value="">Todos</option>
+      {% for fecha in fechas_vencimiento %}
+        <option value="{{ fecha }}">{{ fecha }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="estado_tarea">Estado:</label>
+    <select name="estado_tarea" id="estado_tarea">
+      <option value="">Todos</option>
+      {% for estado in estados_tarea %}
+        <option value="{{ estado }}">{{ estado }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="titulo">Título:</label>
+    <select name="titulo" id="titulo">
+      <option value="">Todos</option>
+      {% for titulo in titulos %}
+        <option value="{{ titulo }}">{{ titulo }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="etiqueta_tarea">Etiqueta:</label>
+    <select name="etiqueta_tarea" id="etiqueta_tarea">
+      <option value="">Todos</option>
+      {% for etiqueta in etiquetas_tarea %}
+        <option value="{{ etiqueta.id }}">{{ etiqueta.nombre }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit" class="btn-personal">Filtrar</button>
+  </form>
+</div>
+
+<script>
+  const filtroBtn = document.getElementById('filtro-btn');
+  const filtroContainer = document.getElementById('filtro-container');
+
+  filtroBtn.addEventListener('click', () => {
+    if (filtroContainer.style.display === 'none') {
+      filtroContainer.style.display = 'block';
+    } else {
+      filtroContainer.style.display = 'none';
+    }
+  });
+</script>
+
+
       <table class="table">
         <tr>
           <th>Lista de tareas</th>
