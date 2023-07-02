@@ -1,6 +1,14 @@
-# Ejercicio Individual 1
+# Ejercicio Individual 6
 
-## Creación de proyecto 'TaskMinder' creado para satisfacer los requerimientos de una aplicación web que permita a los usuarios crear y realizar un seguimiento a tareas pendientes utilizando ORM de Django.
+## Requerimientos 
+- En la vista de Visualización, agregar un formulario que permita capturar un texto en donde el
+usuario pueda registrar observaciones sobre la tarea que está visualizando. Este texto deberá
+contar con un botón Guardar, que registrará en la base de datos. Al cargar la Visualización, el
+campo de texto deberá tener las observaciones que se hayan registrado en visualizaciones
+anteriores.
+- En la vista de Visualización de Tareas, agregar las siguientes acciones: Eliminar, eliminando el
+registro; Completar, cambiando el estado del registro a terminado. En ambos casos, luego de la
+persistencia, redirigir a la vista de Listado.
 
 ### CREDENCIALES
 
