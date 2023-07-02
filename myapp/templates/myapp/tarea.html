@@ -17,7 +17,9 @@
       <th>Fecha de Vencimiento</th>
       <th>Estado de Tarea</th>
       <th>Etiqueta de Tarea</th>
-      <th>Observaciones</th>
+      <th>Observaciones Anteriores</th>
+      <th>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +28,12 @@
       <td>{{ tarea.fecha_vencimiento }}</td>
       <td>{{ tarea.estado_tarea }}</td>
       <td>{{ tarea.etiqueta_tarea }}</td>
-      <td>{{ tarea.observaciones }}</td>
+      <td>
+        <form method="post">
+          {% csrf_token %}
+          {{ observaciones_form.as_p }}
+          <button type="submit">Guardar</button>
+        </form></td>
       <td><a href="{% url 'editar-tarea' pk=tarea.pk %}">Editar</a></td>
       <td><a href="{% url 'eliminar-tarea' pk=tarea.pk %}">Eliminar</a></td>
       <td>

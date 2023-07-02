@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
-from .forms import LoginForm, TareaForm
+from .forms import LoginForm, TareaForm, ObservacionesForm
 from .models import Tarea, EtiquetaTarea
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 from django.views import View
 from django.db.models import Q
 from datetime import datetime
+from django.views.generic.edit import FormMixin
 
 
 # Create your views here.
@@ -104,10 +105,38 @@ class TareaList(LoginRequiredMixin, ListView):
         return context
     
 
-class TareaDetalle(DetailView, LoginRequiredMixin):
-   model = Tarea 
-   context_object_name = 'tarea' 
-   template_name = 'tarea.html'
+class TareaDetalle(LoginRequiredMixin, FormMixin, DetailView):
+    model = Tarea
+    context_object_name = 'tarea'
+    template_name = 'tarea.html'
+    form_class = ObservacionesForm
+
+    def get_success_url(self):
+        return reverse_lazy('tareas')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tarea = self.object
+        observaciones = tarea.observaciones
+        form = self.get_form()
+        form.initial['observaciones'] = observaciones
+        context['observaciones_form'] = form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            self.object.observaciones = form.cleaned_data['observaciones']
+            self.object.save()
+
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 class TareaCrear(CreateView, LoginRequiredMixin):
    model = Tarea
