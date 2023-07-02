@@ -11,6 +11,15 @@ class EtiquetaTarea(models.Model):
     def __str__(self):
         return self.nombre
 
+class Prioridad(models.Model):
+    nombre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+     verbose_name_plural = "Prioridades"
+
 class Tarea(models.Model):
 
     ESTADO_CHOICES = [
@@ -28,6 +37,7 @@ class Tarea(models.Model):
     etiqueta_tarea = models.ForeignKey(EtiquetaTarea, on_delete=models.SET_NULL, null=True, blank=True)
     observaciones = models.TextField(blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    prioridad = models.ForeignKey(Prioridad, on_delete=models.SET_NULL, null=True, blank=True)
 
     def delete(self, *args, **kwargs):
         self.deleted = True

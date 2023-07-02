@@ -120,3 +120,20 @@ nav img:hover {
 .modal{
     display: none;
 }
+
+.prioridad-baja {
+    color: green;
+  }
+  
+  .prioridad-media {
+    color: blue;
+  }
+  
+  .prioridad-alta {
+    color: orange;
+  }
+  
+  .prioridad-urgente {
+    color: red;
+    font-weight: bold;
+  }

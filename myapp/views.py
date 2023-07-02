@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from .forms import LoginForm, TareaForm, ObservacionesForm
-from .models import Tarea, EtiquetaTarea
+from .models import Tarea, EtiquetaTarea, Prioridad
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -78,6 +78,7 @@ class TareaList(LoginRequiredMixin, ListView):
         estado_tarea = self.request.GET.get('estado_tarea')
         titulo = self.request.GET.get('titulo')
         etiqueta_tarea = self.request.GET.get('etiqueta_tarea')
+        prioridad = self.request.GET.get('prioridad')
 
         if fecha_vencimiento:
           try:
@@ -91,6 +92,8 @@ class TareaList(LoginRequiredMixin, ListView):
             queryset = queryset.filter(titulo__icontains=titulo)
         if etiqueta_tarea:
             queryset = queryset.filter(etiqueta_tarea=etiqueta_tarea)
+        if prioridad:
+            queryset = queryset.filter(prioridad=prioridad)
 
         return queryset
        
@@ -102,6 +105,7 @@ class TareaList(LoginRequiredMixin, ListView):
         context['estados_tarea'] = Tarea.objects.filter(user=self.request.user).values_list('estado_tarea', flat=True).distinct()
         context['titulos'] = Tarea.objects.filter(user=self.request.user).values_list('titulo', flat=True).distinct()
         context['etiquetas_tarea'] = EtiquetaTarea.objects.all()
+        context['prioridad'] = Prioridad.objects.all() 
         return context
     
 
@@ -144,8 +148,8 @@ class TareaCrear(CreateView, LoginRequiredMixin):
    success_url = reverse_lazy("tareas")
 
    def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super(TareaCrear, self).form_valid(form)    
+    form.instance.user = form.cleaned_data['destinatario']
+    return super().form_valid(form)    
     
    def get_context_data(self, **kwargs):
       context = super().get_context_data(**kwargs)

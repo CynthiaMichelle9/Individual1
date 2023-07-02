@@ -17,6 +17,7 @@
       <th>Fecha de Vencimiento</th>
       <th>Estado de Tarea</th>
       <th>Etiqueta de Tarea</th>
+      <th>Prioridad</th>
       <th>Observaciones Anteriores</th>
       <th>
       </th>
@@ -28,6 +29,17 @@
       <td>{{ tarea.fecha_vencimiento }}</td>
       <td>{{ tarea.estado_tarea }}</td>
       <td>{{ tarea.etiqueta_tarea }}</td>
+      <td>
+        {% if tarea.prioridad == 'Baja' %}
+          <span class="prioridad-baja">{{ tarea.prioridad }}</span>
+        {% elif tarea.prioridad == 'Media' %}
+          <span class="prioridad-media">{{ tarea.prioridad }}</span>
+        {% elif tarea.prioridad == 'Alta' %}
+          <span class="prioridad-alta">{{ tarea.prioridad }}</span>
+        {% elif tarea.prioridad == 'Urgente' %}
+          <span class="prioridad-urgente">{{ tarea.prioridad }}</span>
+        {% endif %}
+      </td>
       <td>
         <form method="post">
           {% csrf_token %}
@@ -47,6 +59,8 @@
     </tr>
   </tbody>
 </table>
+
+
 
 
 {% endblock %}

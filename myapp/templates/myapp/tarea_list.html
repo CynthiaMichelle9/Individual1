@@ -53,6 +53,14 @@
       {% endfor %}
     </select>
 
+    <label for="prioridad">Prioridad:</label>
+    <select name="prioridad" id="prioridad">
+      <option value="">Todas</option>
+      {% for p in prioridad %}
+      <option value="{{ p.pk }}">{{ p.nombre }}</option>
+      {% endfor %}
+    </select>
+
     <button type="submit" class="btn-personal">Filtrar</button>
   </form>
 </div>
@@ -75,12 +83,14 @@
         <tr>
           <th>Lista de tareas</th>
           <th>Fecha de vencimiento</th>
+          <th>Prioridad</th>
           <th></th>
         </tr>
         {% for tarea in tareas %}
         <tr>
           <td>{{tarea.titulo}}</td><br/>
           <td>{{tarea.fecha_vencimiento}}</td><br/>
+          <td>{{tarea.prioridad}}</td><br/>
           <td> <a href="{% url 'tarea' pk=tarea.pk %}">Ver detalles</a></td>
           
         </tr>
