@@ -23,3 +23,9 @@ Utilice las siguientes credenciales para probar el login de la aplicación sin n
 
 username: Testuser
 password: usuariodeprueba
+
+`Nuevo usuario`
+Utilice las siguientes credenciales:
+
+username: Meche 
+password: mercedes123
