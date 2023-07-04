@@ -5,9 +5,11 @@ body {
     font-family: 'Arimo', sans-serif;
 }
 
-h1, h2, h3, h4, .titulo {
+h1, h2, h3, h4, h5, .titulo {
     font-family:'Public Sans', sans-serif;
-    color:#8c52ff
+    color: black;
+    text-align: center;
+    margin: 30px;
 
 }
 .footerbase {
@@ -41,7 +43,7 @@ h1, h2, h3, h4, .titulo {
     background: #fff; /* color de fondo */
     color: #8c52ff; /* color de fuente */
     border: 2px solid #8c52ff; /* tamaño y color de borde */
-    padding: 16px 20px;
+    padding: 8px   10px;
     border-radius: 3px; /* redondear bordes */
     position: relative;
     z-index: 1;
@@ -56,7 +58,7 @@ h1, h2, h3, h4, .titulo {
     background: #8c52ff; /* color de fondo hover */
     position: absolute;
     z-index: -1;
-    padding: 16px 20px;
+    padding: 8px 10px;
     display: block;
     left: 0;
     right: 0;
@@ -136,23 +138,9 @@ nav img:hover {
     font-style: italic;
 }
 
-.bienvenido{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: black;
-    padding: 10px;
-    margin: 10px;
-    border-color: #c1ff72;
-}
-
 .logoprincipal{
     width: 13rem;
     height: auto;
-}
-
-.modal{
-    display: none;
 }
 
 .prioridad-baja {
@@ -192,4 +180,124 @@ nav img:hover {
 
 .form-control {
     border-color:#c1ff72;
+
 }
+
+.welcome-message {
+    padding: 20px;
+}
+
+.welcome-message span {
+    color:#c1ff72;
+  }
+
+.plustarea {
+    text-align: right;
+}
+
+.btn-atras {
+    text-align:left;
+}
+
+#add-link {
+    text-decoration: none;
+    color: black !important;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: 2px solid;
+    border-color:#8c52ff;
+    transition: all 0.8s ease;
+    position: relative;
+    margin-right: 80px;
+    }
+
+  #add-link:hover {
+    background:#8c52ff;
+  color: #fff !important;
+}
+
+#filtro-btn {
+    text-align: start;
+    display: flex;
+    margin-left: 80px;
+}
+
+.table {
+    margin: 0 auto;
+    width: 90%;
+    border-color: #8c52ff;
+  }
+  
+.table th {
+    background-color:#8c52ff;
+    color: #fff;
+  }
+  
+  .table td,
+  .table th {
+    padding: 14px;
+  }
+  
+  .filtro {
+    margin-bottom: 20px;
+    margin-left: 80px;
+    color: gray;
+  }
+
+  .filter-container {
+    max-width: fit-content!important;
+    position: relative;
+    z-index: 3
+
+  }
+  
+  .filtro label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .filtro option {
+    display: block;
+    color: gray;
+    font-style: italic;
+
+  }
+  
+  
+
+  .filtro select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .filtro button {
+    text-decoration: none;
+    color: black !important;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: 2px solid;
+    border-color:#8c52ff;
+    transition: all 0.8s ease;
+    position: relative;
+    margin-right: 80px;
+  }
+  
+  .empty {
+    text-align: center;
+    font-size: large;
+    color: black;
+    font-style: italic;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px; 
+    margin-bottom: 50px;
+    border-color: #c1ff72;
+    background-color: #f7fad9;
+ }
