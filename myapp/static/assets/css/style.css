@@ -29,12 +29,46 @@ h1, h2, h3, h4, .titulo {
     color: #8c52ff;
     border-radius: 10%;
     margin:6px;;
+    cursor: pointer;
 }
 .btn-personal:hover {
-    background-color: #8c52ff;
+    background-color:#8c52ff;
     color: #c1ff72;
-    transform: scale(1.2 , 1.2);
+    transform: scale(1.1 , 1.1);
 }
+
+.ov-btn-grow-spin {
+    background: #fff; /* color de fondo */
+    color: #8c52ff; /* color de fuente */
+    border: 2px solid #8c52ff; /* tamaño y color de borde */
+    padding: 16px 20px;
+    border-radius: 3px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .ov-btn-grow-spin:hover {
+    color: #fff;/* color de fuente hover */
+  }
+  .ov-btn-grow-spin::after {
+    content: "";
+    background: #8c52ff; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: scale(0, 0) rotate(-180deg);
+    transition: all 0.3s ease;
+  }
+  .ov-btn-grow-spin:hover::after {
+    transition: all 0.3s ease-out;
+    transform: scale(1, 1) rotate(0deg);
+  }
 
 .navbar {
     background-color:#c1ff72;
@@ -137,3 +171,25 @@ nav img:hover {
     color: red;
     font-weight: bold;
   }
+
+  .logincontainer {
+    width: 600px;
+  }
+
+.form-container {
+        max-width: 500px; 
+        width: 100%;
+        
+}
+#login {
+    padding: 60px;
+}
+
+.form-group {
+    margin-top: 1em!important;
+    margin-bottom: 1em!important;
+}
+
+.form-control {
+    border-color:#c1ff72;
+}

@@ -28,29 +28,27 @@ class IndexView(TemplateView):
        context = {}
        return render(request, self.template_name, context=context)
     
-class IngresoView(LoginView, LoginRequiredMixin):
-  template_name = 'registration/login.html'
-  fields = "__all__"
-  redirect_authenticated_user = True
+class IngresoView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
 
-
-  def get_success_url(self):
-    return reverse_lazy('tareas')
+    def get_success_url(self):
+        return reverse_lazy('tareas')
   
-  def post(self, request, *args, **kwargs):
-    form = LoginForm(request.POST)
-    if form.is_valid():
-      username = form.cleaned_data['username']
-      password = form.cleaned_data['password']
-      user = authenticate(username=username, password=password)
-      if user is not None:
-        if user.is_active:
-          login(request, user)
-          return redirect('tareas')
-      form.add_error('password', 'Nombre de usuario o contraseña incorrectos. Porfavor ingrese nuevamente')
-      return render(request, self.template_name, { "form": form })
-    else:
-      return render(request, self.template_name, { "form": form })
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+          username = form.cleaned_data['username']
+          password = form.cleaned_data['password']
+          user = authenticate(username=username, password=password)
+          if user is not None:
+            if user.is_active:
+              login(request, user)
+              return redirect('tareas')
+          form.add_error('password', 'Nombre de usuario o contraseña incorrectos. Porfavor ingrese nuevamente')
+          return render(request, self.template_name, { "form": form })
+        else:
+          return render(request, self.template_name, { "form": form })
 
   
 class TareasView(TemplateView):
