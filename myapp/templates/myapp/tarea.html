@@ -5,70 +5,66 @@
 
 {% block contenido %}
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="justify-content-center">
       <div class="card">
         <div class="card-header">
           <div class="d-flex justify-content-between align-items-center">
-            <h4 class="titulo"> {{ tarea.titulo }}</h4>
+            <h4 class="titulo ">{{ tarea.titulo }}</h4>
             <a id="add-link" href="{% url 'tareas' %}" class="btn btn-atras">Atrás</a>
           </div>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Descripción</th>
-                  <th>Fecha de Vencimiento</th>
-                  <th>Estado de Tarea</th>
-                  <th>Etiqueta de Tarea</th>
-                  <th>Prioridad</th>
-                  <th>Observaciones Anteriores</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{ tarea.descripcion }}</td>
-                  <td>{{ tarea.fecha_vencimiento }}</td>
-                  <td>{{ tarea.estado_tarea }}</td>
-                  <td>{{ tarea.etiqueta_tarea }}</td>
-                  <td>
-                    {% if tarea.prioridad == 'Baja' %}
-                      <span class="prioridad-baja">{{ tarea.prioridad }}</span>
-                    {% elif tarea.prioridad == 'Media' %}
-                      <span class="prioridad-media">{{ tarea.prioridad }}</span>
-                    {% elif tarea.prioridad == 'Alta' %}
-                      <span class="prioridad-alta">{{ tarea.prioridad }}</span>
-                    {% elif tarea.prioridad == 'Urgente' %}
-                      <span class="prioridad-urgente">{{ tarea.prioridad }}</span>
-                    {% endif %}
-                  </td>
-                  <td>
-                    <form method="post">
-                      {% csrf_token %}
-                      {{ observaciones_form.as_p }}
-                      <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
-                  </td>
-                  <td>
-                    <a href="{% url 'editar-tarea' pk=tarea.pk %}" class="btn btn-secondary">Editar</a>
-                  </td>
-                  <td>
-                    <a href="{% url 'eliminar-tarea' pk=tarea.pk %}" class="btn btn-danger">Eliminar</a>
-                  </td>
-                  <td>
-                    {% if tarea.estado_tarea != 'Completado' %}
-                      <form method="POST" action="{% url 'completar-tarea' tarea.idtarea %}">
-                        {% csrf_token %}
-                        <input type="submit" value="Completar" class="btn btn-success">
-                      </form>
-                    {% endif %}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <dl class="row">
+            <dt class="col-sm-3">Descripción:</dt>
+            <dd class="col-sm-9">{{ tarea.descripcion }}</dd>
+
+            <dt class="col-sm-3">Fecha de Vencimiento:</dt>
+            <dd class="col-sm-9">{{ tarea.fecha_vencimiento }}</dd>
+
+            <dt class="col-sm-3">Estado de Tarea:</dt>
+            <dd class="col-sm-9">{{ tarea.estado_tarea }}</dd>
+
+            <dt class="col-sm-3">Etiqueta de Tarea:</dt>
+            <dd class="col-sm-9">{{ tarea.etiqueta_tarea }}</dd>
+
+            <dt class="col-sm-3">Prioridad:</dt>
+            <dd class="col-sm-9">
+              {% if tarea.prioridad == 'Baja' %}
+                <span class="prioridad-baja">{{ tarea.prioridad }}</span>
+              {% elif tarea.prioridad == 'Media' %}
+                <span class="prioridad-media">{{ tarea.prioridad }}</span>
+              {% elif tarea.prioridad == 'Alta' %}
+                <span class="prioridad-alta">{{ tarea.prioridad }}</span>
+              {% elif tarea.prioridad == 'Urgente' %}
+                <span class="prioridad-urgente">{{ tarea.prioridad }}</span>
+              {% endif %}
+            </dd>
+
+            <dt class="col-sm-3">Observaciones Anteriores:</dt>
+            <dd class="col-sm-9">
+              <form method="post">
+                {% csrf_token %}
+                {{ observaciones_form.as_p }}
+                <button type="submit" class="btn ov-btn-grow-spin">Guardar</button>
+              </form>
+            </dd>
+            <dd class="col-sm-9">
+              <div class="d-flex justify-content-start">
+                <a href="{% url 'editar-tarea' pk=tarea.pk %}" class="btn btn-secondary" style="margin-right: 10px;">Editar</a>
+                <a href="{% url 'eliminar-tarea' pk=tarea.pk %}" class="btn btn-danger" style="margin-right: 10px;">Eliminar</a>
+                {% if tarea.estado_tarea != 'Completado' %}
+                  <form method="POST" action="{% url 'completar-tarea' tarea.idtarea %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Completar" class="btn btn-success" style="margin-right: 10px;">
+                  </form>
+                {% endif %}
+              </div>
+            </dd>
+            
+              
+              
+            </dd>
+          </dl>
         </div>
       </div>
     </div>

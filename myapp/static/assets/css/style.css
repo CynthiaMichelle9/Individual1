@@ -9,7 +9,6 @@ h1, h2, h3, h4, h5, .titulo {
     font-family:'Public Sans', sans-serif;
     color: black;
     text-align: center;
-    margin: 30px;
 
 }
 .footerbase {
@@ -301,3 +300,17 @@ nav img:hover {
     border-color: #c1ff72;
     background-color: #f7fad9;
  }
+
+
+ .button-container {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .button-container > * {
+    margin-right: 10px;
+  }
+  
+  .titulo-tarea {
+    background-color: #adbb10;
+  }

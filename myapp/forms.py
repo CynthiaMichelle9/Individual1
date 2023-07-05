@@ -34,4 +34,7 @@ class TareaForm(forms.ModelForm):
         }
 
 class ObservacionesForm(forms.Form):
-    observaciones = forms.CharField(widget=forms.Textarea)
+    observaciones = forms.CharField(
+        label='',
+        widget=forms.Textarea(attrs={'class': 'form-control observaciones-field', 'rows': 2})
+    )
