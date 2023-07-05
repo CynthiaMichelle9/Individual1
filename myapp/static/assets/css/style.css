@@ -143,21 +143,28 @@ nav img:hover {
 }
 
 .prioridad-baja {
-    color: green;
-  }
-  
-  .prioridad-media {
-    color: blue;
-  }
-  
-  .prioridad-alta {
-    color: orange;
-  }
-  
-  .prioridad-urgente {
-    color: red;
-    font-weight: bold;
-  }
+  background-color:rgb(205, 250, 199);
+  color: black;
+  font-weight: bold;
+}
+
+.prioridad-media {
+  background-color:rgb(138, 214, 214);
+  color: black;
+  font-weight: bold;
+}
+
+.prioridad-alta {
+  background-color:rgb(255, 217, 160);
+  color: black;
+  font-weight: bold;
+}
+
+.prioridad-urgente {
+  background-color:rgb(255, 124, 124);
+  color: black;
+  font-weight: bold;
+}
 
   .logincontainer {
     width: 600px;
@@ -263,8 +270,6 @@ nav img:hover {
     font-style: italic;
 
   }
-  
-  
 
   .filtro select {
     width: 100%;
@@ -300,7 +305,6 @@ nav img:hover {
     border-color: #c1ff72;
     background-color: #f7fad9;
  }
-
 
  .button-container {
     display: inline-block;

@@ -85,7 +85,14 @@
             <tr>
               <td>{{ tarea.titulo }}</td>
               <td>{{ tarea.fecha_vencimiento }}</td>
-              <td>{{ tarea.prioridad }}</td>
+              <td class="{% if tarea.prioridad.nombre == 'Baja' %}prioridad-baja
+           {% elif tarea.prioridad.nombre == 'Media' %}prioridad-media
+           {% elif tarea.prioridad.nombre == 'Alta' %}prioridad-alta
+           {% elif tarea.prioridad.nombre == 'Urgente' %}prioridad-urgente
+           {% endif %}">
+  {{ tarea.prioridad.nombre }}
+</td>
+
               <td><a id="add-link" href="{% url 'tarea' pk=tarea.pk %}">Ver detalles</a></td>
             </tr>
             {% empty %}
