@@ -120,9 +120,11 @@ class TareaDetalle(LoginRequiredMixin, FormMixin, DetailView):
         context = super().get_context_data(**kwargs)
         tarea = self.object
         observaciones = tarea.observaciones
+        prioridad = tarea.prioridad
         form = self.get_form()
         form.initial['observaciones'] = observaciones
         context['observaciones_form'] = form
+        context['prioridad'] = tarea.prioridad
         return context
 
     def post(self, request, *args, **kwargs):

@@ -28,17 +28,11 @@
             <dd class="col-sm-9">{{ tarea.etiqueta_tarea }}</dd>
 
             <dt class="col-sm-3">Prioridad:</dt>
-            <dd class="col-sm-9">
-              {% if tarea.prioridad == 'Baja' %}
-                <span class="prioridad-baja">{{ tarea.prioridad }}</span>
-              {% elif tarea.prioridad == 'Media' %}
-                <span class="prioridad-media">{{ tarea.prioridad }}</span>
-              {% elif tarea.prioridad == 'Alta' %}
-                <span class="prioridad-alta">{{ tarea.prioridad }}</span>
-              {% elif tarea.prioridad == 'Urgente' %}
-                <span class="prioridad-urgente">{{ tarea.prioridad }}</span>
-              {% endif %}
+            <dd class="col-sm-9 {% if prioridad == 'Baja' %}prioridad-baja{% elif prioridad == 'Media' %}prioridad-media{% elif prioridad == 'Alta' %}prioridad-alta{% elif prioridad == 'Urgente' %}prioridad-urgente{% endif %}">
+              {{ prioridad }}
             </dd>
+            
+
 
             <dt class="col-sm-3">Observaciones Anteriores:</dt>
             <dd class="col-sm-9">
@@ -61,8 +55,6 @@
               </div>
             </dd>
             
-              
-              
             </dd>
           </dl>
         </div>
