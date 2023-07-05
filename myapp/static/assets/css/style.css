@@ -314,3 +314,11 @@ nav img:hover {
   .titulo-tarea {
     background-color: #adbb10;
   }
+
+  .form-container {
+    background-color:#eee7fd;
+    padding: 20px;
+    text-align: start;
+    margin: 0 auto;
+    max-width: 900px;
+  }

@@ -26,11 +26,14 @@ class LoginForm(forms.Form):
     
 class TareaForm(forms.ModelForm):
     destinatario = forms.ModelChoiceField(queryset=User.objects.all())
+
     class Meta:
         model = Tarea
         fields = ['titulo', 'descripcion', 'fecha_vencimiento', 'estado_tarea', 'etiqueta_tarea', 'prioridad', 'destinatario']
         widgets = {
-            'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'})
+            'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control observaciones-field', 'rows': 2})
+           
         }
 
 class ObservacionesForm(forms.Form):
